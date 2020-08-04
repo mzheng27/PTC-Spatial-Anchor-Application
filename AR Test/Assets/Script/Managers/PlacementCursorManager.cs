@@ -1,54 +1,76 @@
-﻿using System.Collections.Generic;
-
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using GoogleARCore;
 using UnityEngine.XR.ARFoundation;
+using UnityEngine.Experimental.XR;
 using UnityEngine.XR.ARSubsystems;
+using System;
+using System.Diagnostics.Eventing.Reader;
+using System.Security.Cryptography;
 
 public class PlacementCursorManager : MonoBehaviour
 {
-    private AppStateManager appStateManager;
-    private GeneralConfiguration generalConfiguration;
     private ARRaycastManager arRaycastManager;
-
-    private GameObject placementCursor;
-
-
-    void Awake()
+    //the position and rotation of the point
+    private Pose placementPosition;
+    private bool isValidPlacement = false;
+    public GameObject placementMark;
+    public GameObject objectToPlace;
+    public bool enabled;
+    Anchor anchor;
+    void Start()
     {
-        appStateManager = FindObjectOfType<AppStateManager>();
-        generalConfiguration = FindObjectOfType<GeneralConfiguration>();
         arRaycastManager = FindObjectOfType<ARRaycastManager>();
-        placementCursor = Instantiate(generalConfiguration.placementCursorPrefab) as GameObject;
     }
-
+    // Update is called once per frame
     void Update()
     {
-        UpdateCursorPose();
-        UpdateCursorIndicator();
-    }
-
-    private void UpdateCursorPose()
-    {
-        var screenCenter = Camera.current.ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
-        var arRaycastHits = new List<ARRaycastHit>();
-        arRaycastManager.Raycast(screenCenter, arRaycastHits, TrackableType.Planes);
-        appStateManager.placementCursorIsSurface = arRaycastHits.Count > 0;
-        if (appStateManager.placementCursorIsSurface)
+        if (enabled)
         {
-            appStateManager.placementCursorPose = arRaycastHits[0].pose;
+            UpdatePlacementPose();
+            UpdatePlacementMarkPosition();
+            if (isValidPlacement && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+            {
+                PlaceObject();
+            }
         }
     }
-
-    private void UpdateCursorIndicator()
+    void UpdatePlacementPose()
     {
-        if (appStateManager.placementCursorIsSurface)
+        var centerOfScreen = Camera.main.ViewportToScreenPoint(new Vector3(0.5f, 0.5f, 0));
+        var hitList = new List<ARRaycastHit>();
+        //get a flat Surface to place the object
+        arRaycastManager.Raycast(centerOfScreen, hitList, TrackableType.Planes);
+        isValidPlacement = hitList.Count > 0;
+
+        if (isValidPlacement)
         {
-            placementCursor.SetActive(true);
-            placementCursor.transform.SetPositionAndRotation(appStateManager.placementCursorPose.position, appStateManager.placementCursorPose.rotation);
+            placementPosition = hitList[0].pose;
+            var cameraDirection = Camera.main.transform.forward;
+            var cameraRotation = new Vector3(cameraDirection.x, 0f, cameraDirection.z).normalized;
+            placementPosition.rotation = Quaternion.LookRotation(cameraRotation);
+        }
+    }
+    
+    private void UpdatePlacementMarkPosition()
+    {
+        if (isValidPlacement)
+        {
+            placementMark.SetActive(true);
+            placementMark.transform.SetPositionAndRotation(placementPosition.position, placementPosition.rotation);
+
         }
         else
         {
-            placementCursor.SetActive(false);
+            placementMark.SetActive(false);
         }
     }
+    
+    public void PlaceObject()
+    {
+        anchor = Session.CreateAnchor(placementPosition);
+        Instantiate(objectToPlace, placementPosition.position, placementPosition.rotation, anchor.transform);
+    }
 }
+
