@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using GoogleARCore;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.Experimental.XR;
 using UnityEngine.XR.ARSubsystems;
@@ -18,7 +17,7 @@ public class PlacementCursorManager : MonoBehaviour
     public GameObject placementMark;
     public GameObject objectToPlace;
     public bool enabled;
-    Anchor anchor;
+    public GameObject cube;
     void Start()
     {
         arRaycastManager = FindObjectOfType<ARRaycastManager>();
@@ -69,8 +68,7 @@ public class PlacementCursorManager : MonoBehaviour
     
     public void PlaceObject()
     {
-        anchor = Session.CreateAnchor(placementPosition);
-        Instantiate(objectToPlace, placementPosition.position, placementPosition.rotation, anchor.transform);
+        Instantiate(objectToPlace, placementPosition.position, placementPosition.rotation, cube.transform);
     }
 }
 
