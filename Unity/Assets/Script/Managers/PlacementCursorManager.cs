@@ -65,6 +65,15 @@ public class PlacementCursorManager : MonoBehaviour
         }
     }
 
+    public List<PlacementObject> getPlacedObjects()
+    {
+        return placementObjects;
+    }
+
+    public void Log(string x)
+    {
+        logText.text = x;
+    }
     public void PlaceObject()
     {
         ARReferencePoint newAnchor = anchorManager.AddReferencePoint(appStateManager.placementCursorPose);
