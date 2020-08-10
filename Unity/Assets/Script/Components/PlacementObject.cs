@@ -1,12 +1,10 @@
-﻿
+﻿using TMPro;
 using UnityEngine;
 
 public class PlacementObject : MonoBehaviour
 {
     [SerializeField]
     private bool IsSelected;
-
-
 
     public bool Selected
     {
@@ -20,14 +18,40 @@ public class PlacementObject : MonoBehaviour
         }
     }
 
-   
+    private TextMeshPro OverlayText;
+
+
+
     [SerializeField]
     private Canvas canvasComponent;
 
-   
+    [SerializeField]
+    private GameObject mediaList;
+
+
+    private void Awake()
+    {
+        OverlayText = GetComponentInChildren<TextMeshPro>();
+        if (OverlayText != null)
+        {
+            OverlayText.gameObject.SetActive(true);
+        }
+        IsSelected = false;
+        ToggleCanvas();
+    }
+    public void SetOverlayText(string text)
+    {
+        if (OverlayText != null)
+        {
+            OverlayText.gameObject.SetActive(true);
+            OverlayText.text = text;
+        }
+    }
+
 
     public void ToggleCanvas()
     {
         canvasComponent?.gameObject.SetActive(IsSelected);
+        mediaList?.gameObject.SetActive(IsSelected);
     }
 }

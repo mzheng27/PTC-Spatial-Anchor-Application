@@ -47,6 +47,7 @@ public class SelectionManager : MonoBehaviour
                 {
                     placementManager.Log("detected");
                     ChangeSelectedObject(placementObject);
+                    
                 }
             }
             else
@@ -77,7 +78,7 @@ public class SelectionManager : MonoBehaviour
                 current.Selected = true;
                 meshRenderer.material.color = activeColor;
             }
-
+            current.ToggleCanvas();
         }
     }
 
