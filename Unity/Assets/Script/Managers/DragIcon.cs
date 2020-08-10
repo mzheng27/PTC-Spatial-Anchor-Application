@@ -1,19 +1,15 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class DragIcon : MonoBehaviour
 {
     private bool allowMove;
-    //private ARRaycastManager arRaycastManager;
+    
     public Transform itemBar;
 
-    // Start is called before the first frame update
-    void Awake()
-    {
-        //arRaycastManager = FindObjectOfType<ARRaycastManager>();
-    }
-
+    public Text log;
     // Update is called once per frame
     void Update()
     {
@@ -41,10 +37,21 @@ public class DragIcon : MonoBehaviour
                     RectTransform panelOutline = itemBar as RectTransform;
                     if (!RectTransformUtility.RectangleContainsScreenPoint(panelOutline, touchPos))
                     {
-                        Debug.Log("Add");
+                        //if (isSound)
+                        //{
+                        //    log.text = "AudioScene";
+                        //    SceneManager.LoadScene("AudioScene");
+                        //} else if (isText)
+                        //{
+                        //    log.text = "textScene";
+                        //    SceneManager.LoadScene("TextScene");
+                        //} else if (isImage)
+                        //{
+                        //    log.text = "ImageScene";
+                        //    SceneManager.LoadScene("ImageScene");
+                        //} 
                     }
-                    transform.localPosition = Vector3.zero;
-
+                    //transform.localPosition = Vector3.zero;
                     break;
             }
         }

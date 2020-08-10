@@ -11,16 +11,12 @@ public class PlacementCursorManager : MonoBehaviour
     private GeneralConfiguration generalConfiguration;
     private ARRaycastManager arRaycastManager;
     private GameObject placementCursor;
-    //public GameObject objectToPlace;
+    public PlacementObject objectToPlace;
     private ARReferencePointManager anchorManager;
     private List<ARReferencePoint> anchors = new List<ARReferencePoint>();
+    private List<PlacementObject> placementObjects = new List<PlacementObject>();
 
-    //[SerializeField]
-    //private Canvas MobileUX;
-
-    //[SerializeField]
-    //private GameObject DragDropBar;
-
+    public Text logText;
 
     void Awake()
     {
@@ -38,6 +34,7 @@ public class PlacementCursorManager : MonoBehaviour
         UpdateCursorIndicator();
         if (appStateManager.placementCursorIsSurface && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
+            logText.text = placementObjects.Count.ToString();
             PlaceObject();
         }
 
@@ -68,9 +65,20 @@ public class PlacementCursorManager : MonoBehaviour
         }
     }
 
+    public List<PlacementObject> getPlacedObjects()
+    {
+        return placementObjects;
+    }
+
+    public void Log(string x)
+    {
+        logText.text = x;
+    }
     public void PlaceObject()
     {
         ARReferencePoint newAnchor = anchorManager.AddReferencePoint(appStateManager.placementCursorPose);
+        PlacementObject newPlaced = Instantiate(objectToPlace, appStateManager.placementCursorPose.position, appStateManager.placementCursorPose.rotation, newAnchor.transform);
+        placementObjects.Add(newPlaced);
         anchors.Add(newAnchor);
         //DragDropBar.gameObject.SetActive(true);
     }

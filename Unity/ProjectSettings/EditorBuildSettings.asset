@@ -8,6 +8,21 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestScene.unity
     guid: 262d78cc1e44a3b4596adcd5f0028d38
+  - enabled: 1
+    path: Assets/Storage/StorageDemo/Text/TextScene.unity
+    guid: 16648bcb705944f3dbc4d456565d1f3c
+  - enabled: 1
+    path: Assets/Storage/StorageDemo/Image/ImageScene.unity
+    guid: aa837094107064419849b75405659b00
+  - enabled: 1
+    path: Assets/Storage/StorageDemo/Audio/AudioScene.unity
+    guid: c227a39b8c70d4cc0a4e6c0b05f9f647
+  - enabled: 0
+    path: Assets/Storage/StorageDemo/List/ListScene.unity
+    guid: d7c970ceec1de4ccaaa8e502a85d5d8f
+  - enabled: 0
+    path: Assets/Storage/StorageDemo/AssetBundle/AssetBundleScene.unity
+    guid: 71860a2abc4674a20902e33c9311a1af
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: f51aa2445acffad44b45ecaeb1ab7966,
       type: 2}
