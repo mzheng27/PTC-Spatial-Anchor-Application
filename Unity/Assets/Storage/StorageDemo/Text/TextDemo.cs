@@ -89,4 +89,9 @@ public class TextDemo : MonoBehaviour
   {
     SceneManager.LoadScene("AssetBundleScene");
   }
+
+  public void TappedBack()
+  {
+    SceneManager.LoadScene("TestScene");
+  }
 }

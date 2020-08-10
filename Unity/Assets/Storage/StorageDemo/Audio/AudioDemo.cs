@@ -186,8 +186,14 @@ public class AudioDemo : MonoBehaviour
     return true;
   }
 
+  public void TappedBack()
+  {
+        SceneManager.LoadScene("TestScene");
+  }
   public void TappedNext()
   {
     SceneManager.LoadScene("ImageScene");
   }
+
+  
 }

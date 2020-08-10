@@ -144,8 +144,15 @@ public class ImageDemo : MonoBehaviour
     return true;
   }
 
+  public void TappedBack()
+  {
+        SceneManager.LoadScene("TestScene");
+  }
+
   public void TappedNext()
   {
-    SceneManager.LoadScene("ListScene");
+    SceneManager.LoadScene("AudioScene");
   }
+
+
 }
