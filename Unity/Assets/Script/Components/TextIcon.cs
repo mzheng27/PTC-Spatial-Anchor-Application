@@ -1,12 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.XR.ARFoundation;
 
 public class TextIcon : MonoBehaviour, MenuIcon
 {
+    [SerializeField]
+    private GameObject textCanvas;
+    [SerializeField]
+    private Camera arCamera;
+    [SerializeField]
+    private Camera mainCamera;
+
+    void Awake()
+    {
+        //textCanvas = GameObject.Find("TextCanvas");
+    }
     public void OnDrop()
     {
-        SceneManager.LoadScene("TextScene");
+        textCanvas.SetActive(true);
+        mainCamera.gameObject.SetActive(true);
+        arCamera.gameObject.SetActive(false);
     }
 }

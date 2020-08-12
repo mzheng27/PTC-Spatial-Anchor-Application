@@ -23,11 +23,13 @@ public class PlacementObject : MonoBehaviour
 
 
     [SerializeField]
-    private Canvas canvasComponent;
+    private GameObject canvasComponent;
 
     [SerializeField]
     private GameObject mediaList;
 
+    [SerializeField]
+    private GameObject video;
 
     private void Awake()
     {
@@ -58,5 +60,6 @@ public class PlacementObject : MonoBehaviour
     {
         canvasComponent?.gameObject.SetActive(IsSelected);
         mediaList?.gameObject.SetActive(IsSelected);
+        video.SetActive(false);
     }
 }
