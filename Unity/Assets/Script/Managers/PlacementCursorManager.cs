@@ -88,6 +88,7 @@ public class PlacementCursorManager : MonoBehaviour
             //logText.text = placementObjects.Count.ToString();
             ARReferencePoint newAnchor = anchorManager.AddReferencePoint(appStateManager.placementCursorPose);
             PlacementObject newPlaced = Instantiate(objectToPlace, appStateManager.placementCursorPose.position, appStateManager.placementCursorPose.rotation, newAnchor.transform);
+            newPlaced.SetActiveMedia(false);
             placementObjects.Add(newPlaced);
             anchors.Add(newAnchor);
             DragDropBar.gameObject.SetActive(true);

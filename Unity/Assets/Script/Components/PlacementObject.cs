@@ -31,6 +31,13 @@ public class PlacementObject : MonoBehaviour
     [SerializeField]
     private GameObject video;
 
+    [SerializeField]
+    private GameObject image;
+
+    [SerializeField]
+    private GameObject text;
+
+
     private void Awake()
     {
         OverlayText = GetComponentInChildren<TextMeshPro>();
@@ -60,6 +67,14 @@ public class PlacementObject : MonoBehaviour
     {
         canvasComponent?.gameObject.SetActive(IsSelected);
         mediaList?.gameObject.SetActive(IsSelected);
-        video.SetActive(false);
+        
+    }
+
+    public void SetActiveMedia(bool value)
+    {
+        video.SetActive(value);
+        text.SetActive(value);
+        image.SetActive(value);
     }
 }
+
