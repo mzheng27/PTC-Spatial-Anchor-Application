@@ -45,6 +45,13 @@ public class PlacementCursorManager : MonoBehaviour
         {
             changeLabel();
         }
+        if (!appStateManager.placementCursorIsSurface)
+        {
+            logText.text = "Cursor is not on a valid plane";
+        } else
+        {
+            logText.text = "";
+        }
     }
 
     private void UpdateCursorPose()
@@ -93,10 +100,16 @@ public class PlacementCursorManager : MonoBehaviour
             anchors.Add(newAnchor);
             DragDropBar.gameObject.SetActive(true);
             createRaycastPanel.SetActive(false);
-        } else
-        {
-            logText.text = "Cursor is not on a valid plane";
-        }
+        } 
+    }
+
+    public void PlaceObject(Vector3 position, Quaternion rotation, Color color)
+    {
+        //ARReferencePoint newAnchor = anchorManager.AddReferencePoint(appStateManager.placementCursorPose);
+        PlacementObject newPlaced = Instantiate(objectToPlace, position, rotation);
+        newPlaced.gameObject.transform.GetComponent<Renderer>().material.SetColor("_EmissionColor", color);
+        newPlaced.SetActiveMedia(false);
+        placementObjects.Add(newPlaced);
     }
 
     public void backToMainMenu()
