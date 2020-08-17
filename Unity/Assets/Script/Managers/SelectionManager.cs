@@ -46,8 +46,12 @@ public class SelectionManager : MonoBehaviour
                 if (placementObject != null)
                 {
                     placementManager.Log("detected");
-                    ChangeSelectedObject(placementObject);
                     
+                    ChangeSelectedObject(placementObject);
+                    if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+                    {
+                        placementManager.changeSelectedLabel(placementObject);
+                    }
                 }
             }
             else
