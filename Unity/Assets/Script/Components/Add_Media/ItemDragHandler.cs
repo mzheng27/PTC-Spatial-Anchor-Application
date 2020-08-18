@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class ItemDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler 
 {
     private MenuIcon icon;
-
+    
     void Awake()
     {
         icon = GetComponent<MenuIcon>();
@@ -18,6 +18,7 @@ public class ItemDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        //dragDropPanel.SetActive(false);
         transform.localPosition = Vector3.zero;
         icon.OnDrop();
     }

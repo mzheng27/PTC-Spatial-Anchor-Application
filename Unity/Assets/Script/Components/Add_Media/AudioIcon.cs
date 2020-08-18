@@ -6,10 +6,10 @@ public class AudioIcon : MonoBehaviour, MenuIcon
 {
     [SerializeField]
     private GameObject audioScene;
-    [SerializeField]
-    private Camera arCamera;
-    [SerializeField]
-    private Camera mainCamera;
+    //[SerializeField]
+    //private Camera arCamera;
+    //[SerializeField]
+    //private Camera mainCamera;
 
     void Awake()
     {
@@ -18,8 +18,8 @@ public class AudioIcon : MonoBehaviour, MenuIcon
     public void OnDrop()
     {
         audioScene.SetActive(true);
-        mainCamera.gameObject.SetActive(true);
-        arCamera.gameObject.SetActive(false);
+        //mainCamera.gameObject.SetActive(true);
+        //arCamera.gameObject.SetActive(false);
     }
    
 }

@@ -6,10 +6,10 @@ public class TextIcon : MonoBehaviour, MenuIcon
 {
     [SerializeField]
     private GameObject textCanvas;
-    [SerializeField]
-    private Camera arCamera;
-    [SerializeField]
-    private Camera mainCamera;
+    //[SerializeField]
+    //private Camera arCamera;
+    //[SerializeField]
+    //private Camera mainCamera;
 
     void Awake()
     {
@@ -18,7 +18,7 @@ public class TextIcon : MonoBehaviour, MenuIcon
     public void OnDrop()
     {
         textCanvas.SetActive(true);
-        mainCamera.gameObject.SetActive(true);
-        arCamera.gameObject.SetActive(false);
+        //mainCamera.gameObject.SetActive(true);
+        //arCamera.gameObject.SetActive(false);
     }
 }
