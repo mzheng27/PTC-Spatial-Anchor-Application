@@ -95,7 +95,7 @@ public class PlacementCursorManager : MonoBehaviour
             //logText.text = placementObjects.Count.ToString();
             ARReferencePoint newAnchor = anchorManager.AddReferencePoint(appStateManager.placementCursorPose);
             PlacementObject newPlaced = Instantiate(objectToPlace, appStateManager.placementCursorPose.position, appStateManager.placementCursorPose.rotation, newAnchor.transform);
-            newPlaced.SetActiveMedia(false);
+            //newPlaced.SetActiveMedia(false);
             placementObjects.Add(newPlaced);
             anchors.Add(newAnchor);
             DragDropBar.gameObject.SetActive(true);
@@ -108,7 +108,7 @@ public class PlacementCursorManager : MonoBehaviour
         //ARReferencePoint newAnchor = anchorManager.AddReferencePoint(appStateManager.placementCursorPose);
         PlacementObject newPlaced = Instantiate(objectToPlace, position, rotation);
         newPlaced.gameObject.transform.GetComponent<Renderer>().material.SetColor("_EmissionColor", color);
-        newPlaced.SetActiveMedia(false);
+        //newPlaced.SetActiveMedia(false);
         placementObjects.Add(newPlaced);
     }
 

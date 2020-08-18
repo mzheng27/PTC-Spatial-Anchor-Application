@@ -30,6 +30,8 @@ public class SelectionManager : MonoBehaviour
     [SerializeField]
     private GameObject selector;
 
+    private PlacementObject placementObject;
+
     // Update is called once per frame
     void Update()
     {
@@ -42,7 +44,7 @@ public class SelectionManager : MonoBehaviour
             RaycastHit hitObject;
             if (Physics.Raycast(ray, out hitObject, rayDistanceFromCamera))
             {
-                PlacementObject placementObject = hitObject.transform.GetComponent<PlacementObject>();
+                placementObject = hitObject.transform.GetComponent<PlacementObject>();
                 if (placementObject != null)
                 {
                     placementManager.Log("detected");
@@ -67,6 +69,14 @@ public class SelectionManager : MonoBehaviour
         }
     }
 
+    public void setMediaDisplay(string name)
+    {
+        if (placementObject != null)
+        {
+            placementObject.SetActiveMedia(name);
+        }
+    }
+
     void ChangeSelectedObject(PlacementObject selected = null)
     {
         foreach (PlacementObject current in placedObjects)
@@ -82,7 +92,7 @@ public class SelectionManager : MonoBehaviour
                 current.Selected = true;
                 meshRenderer.material.color = activeColor;
             }
-            current.ToggleCanvas();
+            
         }
     }
 

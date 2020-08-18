@@ -25,18 +25,20 @@ public class PlacementObject : MonoBehaviour
     [SerializeField]
     private GameObject canvasComponent;
 
-    [SerializeField]
-    private GameObject mediaList;
+    //[SerializeField]
+    //private GameObject mediaList;
 
-    [SerializeField]
-    private GameObject video;
+    //[SerializeField]
+    //private GameObject video;
 
-    [SerializeField]
-    private GameObject image;
+    //[SerializeField]
+    //private GameObject image;
 
-    [SerializeField]
-    private GameObject text;
+    //[SerializeField]
+    //private GameObject text;
 
+    
+    public GameObject[] medias;
 
     private void Awake()
     {
@@ -46,6 +48,11 @@ public class PlacementObject : MonoBehaviour
             OverlayText.gameObject.SetActive(true);
         }
         IsSelected = false;
+        ToggleCanvas();
+    }
+
+    private void Update()
+    {
         ToggleCanvas();
     }
     public void SetOverlayText(string text)
@@ -66,15 +73,22 @@ public class PlacementObject : MonoBehaviour
     public void ToggleCanvas()
     {
         canvasComponent?.gameObject.SetActive(IsSelected);
-        mediaList?.gameObject.SetActive(IsSelected);
-        
+        //mediaList?.gameObject.SetActive(IsSelected);
+
     }
 
-    public void SetActiveMedia(bool value)
+    public void SetActiveMedia(string mediaName)
     {
-        video.SetActive(value);
-        text.SetActive(value);
-        image.SetActive(value);
+        foreach (GameObject media in medias)
+        {
+            if (media.name.Equals(mediaName))
+            {
+                media.SetActive(true);
+            } else
+            {
+                media.SetActive(false);
+            }
+        }
     }
 }
 
