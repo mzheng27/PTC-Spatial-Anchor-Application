@@ -20,26 +20,16 @@ public class PlacementObject : MonoBehaviour
 
     private TextMeshPro OverlayText;
 
-
-
     [SerializeField]
     private GameObject canvasComponent;
 
-    //[SerializeField]
-    //private GameObject mediaList;
-
-    //[SerializeField]
-    //private GameObject video;
-
-    //[SerializeField]
-    //private GameObject image;
-
-    //[SerializeField]
-    //private GameObject text;
-
+    public AnchorPrefab prefabForSaving;
     
     public GameObject[] medias;
 
+    public string imagePath;
+    public string textPath;
+    public string audioPath;
     private void Awake()
     {
         OverlayText = GetComponentInChildren<TextMeshPro>();
@@ -54,6 +44,11 @@ public class PlacementObject : MonoBehaviour
     private void Update()
     {
         ToggleCanvas();
+        prefabForSaving.filepath_audio = audioPath;
+        prefabForSaving.filepath_image = imagePath;
+        prefabForSaving.filepath_text = textPath;
+        prefabForSaving.Colour = gameObject.GetComponent<Renderer>().material.color;
+        prefabForSaving.priority = OverlayText.text;
     }
     public void SetOverlayText(string text)
     {

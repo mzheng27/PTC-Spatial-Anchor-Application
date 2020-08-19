@@ -4,6 +4,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//StorageBundle: provides methods to save the list of AnchorPrefab 
+//as a JSON file with filename spatialAnchorData; to LOAD and process the JSON
+//file and create a list of PlacementObject
 public class StorageBundle : MonoBehaviour
 {
     [Header("Cloud storage for anchor and media")]
@@ -76,13 +80,14 @@ public class StorageBundle : MonoBehaviour
         foreach(AnchorPrefab anchor in anchorData.prefabs)
         {
             anchor.Init();
-            AddAnchor(anchor.Position, anchor.Rotation, anchor.Colour, anchor.filepath_audio, anchor.filepath_image, anchor.filepath_text);
+            AddAnchor(anchor);
         }
     }
 
-    private void AddAnchor(Vector3 position, Quaternion rotation, Color color, string audio, string image, string text)
+    private void AddAnchor(AnchorPrefab anchor)
     {
-        placement.PlaceObject(position, rotation, color);
-        //store filepath for media
+        PlacementObject newPlaced = placement.PlaceObject(anchor.Position, anchor.Rotation, anchor.Colour, anchor.priority, anchor.filepath_audio, anchor.filepath_text, anchor.filepath_image);
+        newPlaced.prefabForSaving = anchor;
+        
     }
 }

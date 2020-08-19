@@ -10,6 +10,7 @@ public class AnchorPrefab
 	public string color;
 	public string location;
 	public string rotation;
+	public string priority;
 
 	[NonSerialized]
 	public Vector3 Position;
@@ -19,6 +20,8 @@ public class AnchorPrefab
 
 	[NonSerialized]
 	public Quaternion Rotation;
+
+	
 
 	public void Init ()
 	{

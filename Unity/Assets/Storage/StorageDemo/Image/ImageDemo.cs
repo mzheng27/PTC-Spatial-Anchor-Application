@@ -61,14 +61,18 @@ public class ImageDemo : MonoBehaviour
     label.text = "Capture as: " + localPath;
   }
 
-  public void TappedSave()
+  public string TappedSave()
   {
-    if (!IsFileReady())
-    {
-      return;
-    }
-    byte[] imageBytes = File.ReadAllBytes(localPath);
-    PutImage(imageBytes);
+        if (IsFileReady())
+        {
+            byte[] imageBytes = File.ReadAllBytes(localPath);
+            PutImage(imageBytes);
+            return localPath;
+        }
+        else
+        {
+            return null;
+        }
   }
 
   private void PutImage(byte[] imageBytes)
@@ -88,14 +92,14 @@ public class ImageDemo : MonoBehaviour
     Log.Text(label, response.Url, "Put image blob:" + response.Content);
   }
 
-  public void TappedLoad()
+  public void TappedLoad(String path)
   {
     ChangeImage(new Texture2D(1, 1));
     if (!IsFileReady())
     {
       return;
     }
-    string filename = Path.GetFileName(localPath);
+    string filename = Path.GetFileName(path);
     string resourcePath = container + "/" + filename;
     Log.Text(label, "Load: " + resourcePath);
     StartCoroutine(blobService.GetImageBlob(GetImageBlobComplete, resourcePath));

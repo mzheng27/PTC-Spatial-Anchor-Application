@@ -32,6 +32,8 @@ public class SelectionManager : MonoBehaviour
 
     private PlacementObject placementObject;
 
+    public ImageDemo imageDemo;
+
     // Update is called once per frame
     void Update()
     {
@@ -94,6 +96,23 @@ public class SelectionManager : MonoBehaviour
             }
             
         }
+    }
+
+    public void saveImage()
+    {
+        if (placementObject != null)
+        {
+            placementObject.imagePath = imageDemo.TappedSave();
+        }
+    }
+
+    public void LoadImage()
+    {
+        if (placementObject != null)
+        {
+            imageDemo.TappedLoad(placementObject.imagePath);
+        }
+        
     }
 
 

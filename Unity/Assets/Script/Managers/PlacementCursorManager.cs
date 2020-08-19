@@ -103,13 +103,17 @@ public class PlacementCursorManager : MonoBehaviour
         } 
     }
 
-    public void PlaceObject(Vector3 position, Quaternion rotation, Color color)
+    public PlacementObject PlaceObject(Vector3 position, Quaternion rotation, Color color, string priority, string audio, string text, string image)
     {
         //ARReferencePoint newAnchor = anchorManager.AddReferencePoint(appStateManager.placementCursorPose);
         PlacementObject newPlaced = Instantiate(objectToPlace, position, rotation);
         newPlaced.gameObject.transform.GetComponent<Renderer>().material.SetColor("_EmissionColor", color);
-        //newPlaced.SetActiveMedia(false);
+        newPlaced.SetOverlayText(priority);
+        newPlaced.audioPath = audio;
+        newPlaced.imagePath = image;
+        newPlaced.textPath = text;
         placementObjects.Add(newPlaced);
+        return newPlaced;
     }
 
     public void backToMainMenu()
@@ -124,15 +128,17 @@ public class PlacementCursorManager : MonoBehaviour
         if (string.Equals(selected.getLabel().Trim(), "Emergency"))
         {
             selected.SetOverlayText("Low Priority");
-        } else if (string.Equals(selected.getLabel().Trim(), "Medium"))
+            selected.gameObject.transform.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.green);
+        }
+        else if (string.Equals(selected.getLabel().Trim(), "Medium"))
         {
             selected.SetOverlayText("Emergency");
-        } else if (string.Equals(selected.getLabel().Trim(), ""))
-        {
-            selected.SetOverlayText("Low Priority");
-        } else if (string.Equals(selected.getLabel().Trim(), "Low Priority"))
+            selected.gameObject.transform.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.red);
+        } 
+        else if (string.Equals(selected.getLabel().Trim(), "Low Priority"))
         {
             selected.SetOverlayText("medium");
+            selected.gameObject.transform.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.yellow);
         }
     }
 
