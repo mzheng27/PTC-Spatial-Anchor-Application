@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SelectionManager : MonoBehaviour
 {
@@ -33,6 +35,8 @@ public class SelectionManager : MonoBehaviour
     private PlacementObject placementObject;
 
     public ImageDemo imageDemo;
+
+    public TextDemo textDemo;
 
     // Update is called once per frame
     void Update()
@@ -69,6 +73,7 @@ public class SelectionManager : MonoBehaviour
         {
             rayTimer += Time.deltaTime * 1.0f;
         }
+        
     }
 
     public void setMediaDisplay(string name)
@@ -106,13 +111,29 @@ public class SelectionManager : MonoBehaviour
         }
     }
 
+    public void updateTextPath()
+    {
+        if (placementObject != null)
+        {
+            placementObject.textPath = textDemo.TappedSaveText();
+        }
+    }
+
     public void LoadImage()
     {
         if (placementObject != null)
         {
             imageDemo.TappedLoad(placementObject.imagePath);
         }
-        
+    }
+
+    public void LoadText()
+    {
+        if (placementObject != null)
+        {
+            String textMessage = textDemo.TappedLoadText(placementObject.textPath);
+            placementObject.textWindow.text = textMessage;
+        }
     }
 
 

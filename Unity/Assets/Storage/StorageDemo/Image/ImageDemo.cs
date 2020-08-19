@@ -26,6 +26,7 @@ public class ImageDemo : MonoBehaviour
   [Header("Image Demo")]
   public Image image;
   public Text label;
+    public GameObject UIPanel;
 
   private bool isCaptured = false;
 
@@ -56,7 +57,9 @@ public class ImageDemo : MonoBehaviour
   public void TappedCaptureScreenshot()
   {
     string filename = string.Format("{0}.png", DateTime.UtcNow.ToString("yy-MM-dd-HH-mm-ss-ff"));
+        UIPanel.SetActive(false);
     localPath = Screenshot.Capture(filename);
+        UIPanel.SetActive(true);
     isCaptured = true;
     label.text = "Capture as: " + localPath;
   }

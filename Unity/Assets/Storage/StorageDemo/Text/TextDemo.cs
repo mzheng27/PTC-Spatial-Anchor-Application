@@ -46,11 +46,12 @@ public class TextDemo : MonoBehaviour
 
   }
 
-  public void TappedSaveText()
+  public string TappedSaveText()
   {
     ChangeLabelText("Saving...");
     string text = !string.IsNullOrEmpty(inputField.text) ? inputField.text : "hello";
     StartCoroutine(blobService.PutTextBlob(PutTextBlobComplete, text, container, filename));
+        return filename;
   }
 
   private void PutTextBlobComplete(RestResponse response)
@@ -63,11 +64,12 @@ public class TextDemo : MonoBehaviour
     Log.Text(label, "Put blob status:" + response.StatusCode);
   }
 
-  public void TappedLoadText()
+  public string TappedLoadText(string path)
   {
     ChangeLabelText("Loading...");
-    string resourcePath = container + "/" + filename;
+    string resourcePath = container + "/" + path;
     StartCoroutine(blobService.GetTextBlob(GetTextBlobComplete, resourcePath));
+        return label.text;
   }
 
   private void GetTextBlobComplete(RestResponse response)

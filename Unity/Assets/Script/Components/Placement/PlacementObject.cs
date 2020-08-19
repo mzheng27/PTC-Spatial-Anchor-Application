@@ -20,6 +20,8 @@ public class PlacementObject : MonoBehaviour
 
     private TextMeshPro OverlayText;
 
+    public TextMeshPro textWindow;
+
     [SerializeField]
     private GameObject canvasComponent;
 
