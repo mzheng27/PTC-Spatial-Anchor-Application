@@ -32,6 +32,8 @@ public class PlacementObject : MonoBehaviour
     public string imagePath;
     public string textPath;
     public string audioPath;
+
+
     private void Awake()
     {
         OverlayText = GetComponentInChildren<TextMeshPro>();
@@ -40,12 +42,12 @@ public class PlacementObject : MonoBehaviour
             OverlayText.gameObject.SetActive(true);
         }
         IsSelected = false;
-        ToggleCanvas();
+        //ToggleCanvas();
     }
 
     private void Update()
     {
-        ToggleCanvas();
+        //ToggleCanvas();
         prefabForSaving.filepath_audio = audioPath;
         prefabForSaving.filepath_image = imagePath;
         prefabForSaving.filepath_text = textPath;
@@ -67,12 +69,12 @@ public class PlacementObject : MonoBehaviour
     }
 
 
-    public void ToggleCanvas()
-    {
-        canvasComponent?.gameObject.SetActive(IsSelected);
-        //mediaList?.gameObject.SetActive(IsSelected);
+    //public void ToggleCanvas()
+    //{
+    //    canvasComponent?.gameObject.SetActive(IsSelected);
+    //    //mediaList?.gameObject.SetActive(IsSelected);
 
-    }
+    //}
 
     public void SetActiveMedia(string mediaName)
     {

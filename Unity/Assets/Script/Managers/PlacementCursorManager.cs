@@ -25,6 +25,7 @@ public class PlacementCursorManager : MonoBehaviour
 
     public Text anchorText;
     public Text logText;
+    public GameObject scanPanel;
 
     void Awake()
     {
@@ -37,11 +38,15 @@ public class PlacementCursorManager : MonoBehaviour
 
     void Update()
     {
-        UpdateCursorPose();
-        UpdateCursorIndicator();
+        if (createRaycastPanel.activeSelf == true || scanPanel.activeSelf == true)
+        {
+            UpdateCursorPose();
+            UpdateCursorIndicator();
+        }
+       
         
         anchorText.text = placementObjects.Count.ToString();
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        if (Input.touchCount > 1 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             changeLabel();
         }
@@ -53,7 +58,10 @@ public class PlacementCursorManager : MonoBehaviour
             logText.text = "";
         }
     }
-
+    public void SetPlacementCursor(bool value)
+    {
+        placementCursor.SetActive(value);
+    }
     private void UpdateCursorPose()
     {
         var screenCenter = Camera.current.ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
@@ -100,6 +108,7 @@ public class PlacementCursorManager : MonoBehaviour
             anchors.Add(newAnchor);
             DragDropBar.gameObject.SetActive(true);
             createRaycastPanel.SetActive(false);
+            
         } 
     }
 
@@ -107,7 +116,7 @@ public class PlacementCursorManager : MonoBehaviour
     {
         //ARReferencePoint newAnchor = anchorManager.AddReferencePoint(appStateManager.placementCursorPose);
         PlacementObject newPlaced = Instantiate(objectToPlace, position, rotation);
-        newPlaced.gameObject.transform.GetComponent<Renderer>().material.SetColor("_EmissionColor", color);
+        newPlaced.gameObject.transform.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", color);
         newPlaced.SetOverlayText(priority);
         newPlaced.audioPath = audio;
         newPlaced.imagePath = image;
@@ -128,17 +137,17 @@ public class PlacementCursorManager : MonoBehaviour
         if (string.Equals(selected.getLabel().Trim(), "Emergency"))
         {
             selected.SetOverlayText("Low Priority");
-            selected.gameObject.transform.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.green);
+            selected.gameObject.transform.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", Color.green);
         }
         else if (string.Equals(selected.getLabel().Trim(), "Medium"))
         {
             selected.SetOverlayText("Emergency");
-            selected.gameObject.transform.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.red);
+            selected.gameObject.transform.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", Color.red);
         } 
         else if (string.Equals(selected.getLabel().Trim(), "Low Priority"))
         {
-            selected.SetOverlayText("medium");
-            selected.gameObject.transform.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.yellow);
+            selected.SetOverlayText("Medium");
+            selected.gameObject.transform.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", Color.yellow);
         }
     }
 
@@ -147,7 +156,7 @@ public class PlacementCursorManager : MonoBehaviour
         if (!RayCastCanvas.activeSelf)
         {
             changeSelectedLabel(placementObjects[placementObjects.Count - 1]);
-        }
+        } 
     }
 }
 

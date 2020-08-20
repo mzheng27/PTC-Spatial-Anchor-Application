@@ -404,16 +404,27 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 682969935}
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1572109402}
+        m_MethodName: SetPlacementCursor
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &139368794
 MonoBehaviour:
@@ -1464,6 +1475,7 @@ MonoBehaviour:
   selector: {fileID: 784793347}
   imageDemo: {fileID: 673445398}
   textDemo: {fileID: 673445397}
+  mediaPanel: {fileID: 682969935}
 --- !u!114 &461783259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1477,6 +1489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startcanvas: {fileID: 821767073}
+  scanRoomPanel: {fileID: 823715432}
 --- !u!1 &538584003
 GameObject:
   m_ObjectHideFlags: 0
@@ -7014,6 +7027,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 821767073}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &756463014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8046,7 +8070,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!135 &974924011
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -8326,7 +8350,7 @@ PrefabInstance:
     - target: {fileID: 1828958790212229582, guid: a6e0f5e46f7079a4888bd0b5c84778eb,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1828958790212229583, guid: a6e0f5e46f7079a4888bd0b5c84778eb,
         type: 3}
@@ -8979,7 +9003,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -12.2, y: 25}
+  m_AnchoredPosition: {x: -1, y: 25}
   m_SizeDelta: {x: 465.38, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1292498145
@@ -9029,8 +9053,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -9196,6 +9220,17 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 821767073}
         m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1572109402}
+        m_MethodName: SetPlacementCursor
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9508,6 +9543,7 @@ MonoBehaviour:
   RayCastCanvas: {fileID: 269248812}
   anchorText: {fileID: 1083842460}
   logText: {fileID: 1964456185}
+  scanPanel: {fileID: 823715432}
 --- !u!114 &1572109403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11154,7 +11190,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 104.5, y: -22.16}
+  m_AnchoredPosition: {x: 98, y: -22.16}
   m_SizeDelta: {x: 66.33876, y: 44.321014}
   m_Pivot: {x: -0.000000179891, y: 0.5}
 --- !u!114 &2023301710

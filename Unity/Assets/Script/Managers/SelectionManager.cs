@@ -38,6 +38,8 @@ public class SelectionManager : MonoBehaviour
 
     public TextDemo textDemo;
 
+    public GameObject mediaPanel;
+
     // Update is called once per frame
     void Update()
     {
@@ -53,8 +55,8 @@ public class SelectionManager : MonoBehaviour
                 placementObject = hitObject.transform.GetComponent<PlacementObject>();
                 if (placementObject != null)
                 {
-                    placementManager.Log("detected");
                     
+                    mediaPanel.SetActive(true);
                     ChangeSelectedObject(placementObject);
                     if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
                     {
@@ -64,6 +66,7 @@ public class SelectionManager : MonoBehaviour
             }
             else
             {
+                mediaPanel.SetActive(false);
                 ChangeSelectedObject();
             }
 

@@ -8,6 +8,7 @@ public class PlaneManager : MonoBehaviour
 {
     private int numplanes;
     public GameObject startcanvas;
+    public GameObject scanRoomPanel;
     
 
     // Start is called before the first frame update
@@ -25,9 +26,11 @@ public class PlaneManager : MonoBehaviour
             numplanes++;
         }
 
-        if (numplanes != 0)
+        if (numplanes > 2 && scanRoomPanel.activeSelf == true)
         {
+            
             startcanvas.gameObject.SetActive(true);
+            scanRoomPanel.SetActive(false);
         }
     }
 }
