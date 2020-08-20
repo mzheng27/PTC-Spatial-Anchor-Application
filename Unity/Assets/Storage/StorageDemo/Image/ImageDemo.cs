@@ -66,16 +66,16 @@ public class ImageDemo : MonoBehaviour
 
   public string TappedSave()
   {
-        if (IsFileReady())
-        {
+        //if (IsFileReady())
+        //{
             byte[] imageBytes = File.ReadAllBytes(localPath);
             PutImage(imageBytes);
             return localPath;
-        }
-        else
-        {
-            return null;
-        }
+        //}
+        //else
+        //{
+        //    return null;
+        //}
   }
 
   private void PutImage(byte[] imageBytes)
