@@ -1300,6 +1300,7 @@ GameObject:
   - component: {fileID: 461783257}
   - component: {fileID: 461783256}
   - component: {fileID: 461783258}
+  - component: {fileID: 461783259}
   m_Layer: 0
   m_Name: ARFoundationStack
   m_TagString: Untagged
@@ -1463,6 +1464,19 @@ MonoBehaviour:
   selector: {fileID: 784793347}
   imageDemo: {fileID: 673445398}
   textDemo: {fileID: 673445397}
+--- !u!114 &461783259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461783247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 223043a21b0f9114bb9debd23c07b225, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startcanvas: {fileID: 821767073}
 --- !u!1 &538584003
 GameObject:
   m_ObjectHideFlags: 0
