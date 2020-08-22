@@ -43,6 +43,7 @@ public class SelectionManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         placedObjects = placementManager.getPlacedObjects();
         if (rayTimer >= generateRayAfterSeconds)
         {
@@ -55,7 +56,7 @@ public class SelectionManager : MonoBehaviour
                 placementObject = hitObject.transform.GetComponent<PlacementObject>();
                 if (placementObject != null)
                 {
-                    
+                    placementObject.textWindow.text = textDemo.getLabel();
                     mediaPanel.SetActive(true);
                     ChangeSelectedObject(placementObject);
                     if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
@@ -114,13 +115,13 @@ public class SelectionManager : MonoBehaviour
         }
     }
 
-    public void updateTextPath()
-    {
-        if (placementObject != null)
-        {
-            placementObject.textPath = textDemo.TappedSaveText();
-        }
-    }
+    //public void updateTextPath()
+    //{
+    //    if (placementObject != null)
+    //    {
+    //        placementObject.textPath = textDemo.TappedSaveText();
+    //    }
+    //}
 
     public void LoadImage()
     {
@@ -134,8 +135,8 @@ public class SelectionManager : MonoBehaviour
     {
         if (placementObject != null)
         {
-            String textMessage = textDemo.TappedLoadText(placementObject.textPath);
-            placementObject.textWindow.text = textMessage;
+            String textMessage = textDemo.getLabel();
+
         }
     }
 

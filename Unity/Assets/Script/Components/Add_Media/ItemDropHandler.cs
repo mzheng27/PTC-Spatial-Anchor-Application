@@ -6,11 +6,12 @@ using UnityEngine.EventSystems;
 public class ItemDropHandler : MonoBehaviour, IDropHandler
 {
    
-    private ItemDragHandler dragHandler;
+    public ItemDragHandler dragHandler;
+    
 
     void Awake()
     {
-        dragHandler = FindObjectOfType<ItemDragHandler>();
+        //dragHandler = FindObjectOfType<ItemDragHandler>();
     }
     [SerializeField]
     private GameObject dragDropPanel;

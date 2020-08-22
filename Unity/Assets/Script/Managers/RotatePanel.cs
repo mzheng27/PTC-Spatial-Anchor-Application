@@ -17,6 +17,7 @@ public class RotatePanel : MonoBehaviour
         var facinguser = Camera.main.transform.position;
         Panel.transform.LookAt(facinguser);
         var oldrotation = Panel.transform.rotation;
-        Panel.transform.rotation = Quaternion.Euler(oldrotation.eulerAngles.x, oldrotation.eulerAngles.y, 90.0f);
+        Panel.transform.rotation = Quaternion.Euler(-20f, oldrotation.eulerAngles.y, 90.0f);
+
     }
 }
